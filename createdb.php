@@ -15,6 +15,10 @@ if (!$result) {
     exit();
 }
 printf ("Created database $database_DB.");
+$db = pg_connect("host=$hostname_DB dbname=$database_DB user=$username_DB password=$password_DB");
+ if (!$db) {
+     die("Error in connection: " . pg_last_error());
+ }
 $query =  "CREATE TABLE contact ( firstname VARCHAR(255), surname VARCHAR(255), emailaddress VARCHAR(255) )";
 $result = pg_query($db, $query);
 if (!$result) {
